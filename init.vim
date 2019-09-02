@@ -39,7 +39,11 @@ Plug 'davidhalter/jedi-vim'
 " Zenburn colour scheme only works on Linux
 Plug 'jnurmine/Zenburn'
 
+" UltiSnip plugin for using snippets
+Plug 'SirVer/ultisnips'
 
+" Plugin for predefined snippets
+Plug 'honza/vim-snippets'
 call plug#end()
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -163,3 +167,8 @@ augroup END
 
 " Set British spell checker
 set spell spelllang=en_gb
+" UltiSnip settings
+let g:ultisnips_python_quoting_style='single'
+let g:ultisnips_python_triple_quoting_style='double'
+let g:ultisnips_python_style='numpy'
+
