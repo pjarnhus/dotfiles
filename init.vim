@@ -100,12 +100,6 @@ set smartcase
 " Save when switching to another window
 au FocusLost * :wa
 
-" Remap movement between splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-L> <C-W><C-L>
-
 " Set up leader key maps
 let mapleader="æ"
 
