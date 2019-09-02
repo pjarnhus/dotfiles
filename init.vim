@@ -161,6 +161,22 @@ augroup END
 
 " Set British spell checker
 set spell spelllang=en_gb
+
+" Net-RW settings
+" Open Net-RW in a vertical split to the left with leader+space
+" Enable line numbering in Net-RW, which is not there by default
+nnoremap <leader><space> :Vex<CR>:set nu rnu<CR>
+
+" Present Net-RW in a tree like structure
+let g:netrw_liststyle=1
+
+" Tell NetRW to keep line numbers
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+
+
+let g:netrw_preview=1
+let g:netrw_altv=1
+
 " UltiSnip settings
 let g:ultisnips_python_quoting_style='single'
 let g:ultisnips_python_triple_quoting_style='double'
