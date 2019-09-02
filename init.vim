@@ -39,11 +39,6 @@ Plug 'davidhalter/jedi-vim'
 " Zenburn colour scheme only works on Linux
 Plug 'jnurmine/Zenburn'
 
-" Fugitive - Git support
-Plug 'tpope/vim-fugitive'
-
-" Unimpaired
-Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 
@@ -153,8 +148,6 @@ function! StatusLine(state)
     let statusline.="%{&modified?'*':''}"
     let statusline.="\ "
 
-    " Show Git branch names on the right
-    let statusline.="%=\ %{fugitive#head()!=''?'('.fugitive#head().')':''}"
     return statusline
 endfunction
 
