@@ -3,6 +3,7 @@ set nocompatible              " Remove Vi compatibility
 " Disable modelines for security reason
 set nomodeline
 
+" Load Plug - Your friendly neighbourhood plugin manager
 if has('unix')
 	call plug#begin('~/.config/nvim/autoload')
 endif
@@ -10,6 +11,8 @@ if has('win32')
 	call plug#begin('C:\Users\bb9946\AppData\Local\nvim\autoload')
 	let g:python3_host_prog = 'C:\Users\bb9946\AppData\Local\Continuum\anaconda3\python.exe'
 end
+
+" Load autocomplete plugins
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-jedi'
@@ -30,7 +33,7 @@ nnoremap <space> za
 " Linting with flake8
 Plug 'nvie/vim-flake8'
 
-" Jedi-vim
+" Jedi-vim - Autocomplete and docstring utilities
 Plug 'davidhalter/jedi-vim'
 
 " Zenburn colour scheme only works on Linux
@@ -117,7 +120,14 @@ nnoremap <leader>h :bprevious<CR>
 " Create dash line below current line
 nnoremap <leader>- Yp<C-V>$r-
 
-" Create custom statusline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                     """""
+"""""                             Status line                             """""
+"""""                                                                     """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Generic function for the statusline
 function! StatusLine(state)
     let statusline=""
