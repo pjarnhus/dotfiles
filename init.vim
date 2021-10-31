@@ -1,125 +1,216 @@
-set nocompatible              " Remove Vi compatibility
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                                Basic settings                               """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Disable modelines for security reason
+" Remove compatability with vi - probably default but let's be sure
+set nocompatible
+
+" Disable modelines for security reasons
 set nomodeline
 
-" Load Plug - Your friendly neighbourhood plugin manager
-if has('unix')
-	call plug#begin('~/.config/nvim/autoload')
-endif
-if has('win32')
-	call plug#begin('C:\Users\bb9946\AppData\Local\nvim\autoload')
-	let g:python3_host_prog = 'C:\Users\bb9946\AppData\Local\Continuum\anaconda3\python.exe'
-end
+" Activate filetype recognition, along with plugins and indents
+filetype plugin indent on
 
-" Load autocomplete plugins
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
+" Allow a buffer to go to the background with unsaved changes
+set hidden
 
-" Make sure that we get the corrent indentation with indentpython plugin
-Plug 'vim-scripts/indentpython.vim'
+" Do not update screen while executing macro - there is no point to do it
+set lazyredraw
 
-" Enable proper folding for python
-set foldmethod=indent
-set foldlevel=99
-Plug 'tmhedberg/SimpylFold'
+" Enable menu of possible completions for command line
+set wildmenu
 
-" Enable folding with spacebar
-nnoremap <space> za
-
-" Linting with flake8
-Plug 'nvie/vim-flake8'
-
-" Jedi-vim - Autocomplete and docstring utilities
-Plug 'davidhalter/jedi-vim'
-
-" Zenburn colour scheme only works on Linux
-Plug 'jnurmine/Zenburn'
-
-" UltiSnip plugin for using snippets
-Plug 'SirVer/ultisnips'
-
-" Plugin for predefined snippets
-Plug 'honza/vim-snippets'
-call plug#end()
-
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=menuone,noselect,noinsert
-set shortmess+=c
-let ncm2#popup_delay = 5
-let ncm2#complete_length = [[1, 1]]
-let g:ncm2#matcher = 'substrfuzzy'
+" Set wildmode to only complete the longest common string, and then show menu
+set wildmode=list:longest
 
 " Set encoding to UTF-8
 set encoding=utf-8
 
-" Set relative line numbering with absolute number at current line
-set nu rnu
+" Set line breaks to be unix style
+set fileformat=unix
 
-" Set color column with a warning and danger columns
-let &colorcolumn="".join(range(80,999),",")
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
-
-" Make Vim adhere to PEP-8 standards
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ softtabstop=4
-    \ shiftwidth=4
-    \ textwidth=79
-    \ expandtab
-    \ autoindent
-    \ fileformat=unix
-
-" Investigate what this does!
-let python_highlight_all = 1
-syntax on
-
-" Do not show docstring popup until called for
-autocmd FileType python setlocal completeopt-=preview
-" Do not start autocompletion on . - Requires that it is called
-let g:jedi#popup_on_dot = 0
-
-" Set colour scheme on exists on Linux
-colorscheme zenburn
-
-
-let g:jedi#auto_initialization = 1
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#completions_command = ""
-let g:jedi#show_call_signatures = 1
-
-" Ignore case in searches, except when upper case letters are provided
+" Ignore case in searches, unless upper case letters are present
 set ignorecase
 set smartcase
 
-" Save when switching to another window
-au FocusLost * :wa
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                                  Fuzzy find                                 """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Set up leader key maps
+" Set the path to current working directory plus recursive glob
+" This enables us to search for files recursively
+set path=.,**
+
+" Ignore files that are not relevant for direct editing
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+set wildignore+=*.pdf,*.ps
+set wildignore+=.git/*
+set wildignore+=**/node_modules/*
+set wildignore+=*.pyc,*.ipynb
+set wildignore+=.ipynb_checkpoints/*
+
+nnoremap <leader>o :find *
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                                    Plugins                                  """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+call plug#begin(fnamemodify(expand('$MYVIMRC'), ':p:h') . '/autoload')
+
+" Colour scheme
+Plug 'jnurmine/Zenburn'
+
+" Syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
+" Session plugin
+Plug 'tpope/vim-obsession'
+
+call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                                Omni-Complete                                """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use the syntax highlight function to do omni-completion
+set omnifunc=syntaxcomplete#Complete
+
+" Complete the longest common string and show a menu if multiple matches
+set completeopt=menu
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                                Look and feel                                """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set colour scheme to the lovely zenburn
+colorscheme zenburn
+
+" Turn on syntax highlighting
+syntax on
+
+" Use tabs instead of spaces with a fixed line width of 88 characters
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set textwidth=88
+set expandtab
+set autoindent
+
+" Set color column as a warning for overstepping 88 characters
+let &colorcolumn="".join(range(88,999),",")
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
+" Set line numbering to relative numbers with the absolute at the current line
+set nu rnu
+
+" Set British spell checker, but do not highlight incorrect spelling
+set spell spelllang=en_gb
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                             Parentheses behaviour                           """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Automatically create a set of parentheses/brackets, when the open is created
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
+
+" Do not insert a closing parentheses/bracket if the next character is one
+function! s:InsertClose(paren)
+    let l:next_char = getline('.')[col('.')-1]
+    if l:next_char ==# a:paren
+        call feedkeys("\<Right>", 'n')
+    else
+        call feedkeys(a:paren, 'n')
+    endif
+endfunction
+
+inoremap <silent> ) <C-\><C-O>:call <SID>InsertClose(')')<CR>
+inoremap <silent> ] <C-\><C-O>:call <SID>InsertClose(']')<CR>
+inoremap <silent> } <C-\><C-O>:call <SID>InsertClose('}')<CR>
+
+" Remove both opening and closing parentheses/brackets on backspace, if no characters
+" between them
+function! s:IsOpenClose()
+    let l:paren_set = [['(',')'], ['[',']'], ['{','}']]
+    let l:current_line = getline('.')
+    let l:prev_char = l:current_line[col('.')-2]
+    let l:next_char = l:current_line[col('.')-1]
+    let l:state = "no_pair"
+    for p in l:paren_set
+        if (l:prev_char ==# p[0] && l:next_char ==# p[1])
+            let l:state = "pair"
+        endif
+    endfor
+    return l:state
+endfunction
+
+function! s:DeleteParenPair()
+    let l:state = s:IsOpenClose()
+    if l:state ==# "pair"
+        " Adding an extra backspace as feedkeys append to the text
+        call feedkeys("\<BS>\<Right>\<BS>\<BS>", "n")
+    else
+        " Adding an extra backspace as feedkeys append to the text
+        call feedkeys("\<BS>\<BS>", "n")
+    endif
+endfunction
+
+inoremap <silent> <BS> <C-\><C-O>:call <SID>DeleteParenPair()<CR> 
+
+" When hitting enter inside a pair of parentheses/brackets, move closing part two lines
+" down and continue editing on the empty line in between
+function! s:NewLineParens()
+    let l:state = s:IsOpenClose()
+    if l:state ==# "pair"
+        " Adding an extra backspace as feedkeys append to the text
+        call feedkeys("\<BS>\<CR>\<C-O>O", "n")
+    else
+        " Adding an extra backspace as feedkeys append to the text
+        call feedkeys("\<BS>\<CR>", "n")
+    endif
+endfunction
+
+inoremap <silent> <CR> <C-\><C-O>:call <SID>NewLineParens()<CR> 
+
+" Set leader key
 let mapleader="æ"
 
 " Break line while remaining in normal mode
 nnoremap <leader>j i<CR><ESC>
 
-" Create easy switching between buffers
-nnoremap <leader>l :bnext<CR>
-nnoremap <leader>h :bprevious<CR>
+" List all buffers and prepare to enter the name of one to switch to
+nnoremap <leader>b :ls<CR>:buffer<space>
 
-" Create dash line below current line
-nnoremap <leader>- Yp<C-V>$r-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""                                                                     """""
-"""""                             Status line                             """""
-"""""                                                                     """""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                                 Status line                                 """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Generic function for the statusline
 function! StatusLine(state)
@@ -159,26 +250,32 @@ augroup status
     autocmd WinLeave * setlocal statusline=%!StatusLine('Inactive')
 augroup END
 
-" Set British spell checker
-set spell spelllang=en_gb
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                                  Sessions                                   """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Net-RW settings
-" Open Net-RW in a vertical split to the left with leader+space
-" Enable line numbering in Net-RW, which is not there by default
-nnoremap <leader><space> :Vex<CR>:set nu rnu<CR>
+let g:sessions_dir = fnamemodify(expand('$MYVIMRC'), ':p:h') . '/sessions'
 
-" Present Net-RW in a tree like structure
-let g:netrw_liststyle=1
+function! SetSession()
+    call inputsave()
+    let l:workdir = input('Set working directory for session: ', fnamemodify(expand('%'), ':p:h'), 'dir')
+    call inputrestore()
+    exec 'cd ' . l:workdir
+    
+    let l:session_name = fnamemodify(l:workdir, ':t')    
+    let l:session_name = substitute(l:session_name, '^[^a-zA-Z0-9]*', '', '')
+    let l:session_name = substitute(l:session_name, '[^a-zA-Z0-9]*$', '', '')
+    let l:session_name = substitute(l:session_name, '[^a-zA-Z0-9]', '_', 'g')
+    call inputsave()
+    let l:session_file = input('Set session file name: ', g:sessions_dir . '/' . l:session_name . '.vim', 'file')
+    call inputrestore()
+    exec ':redraw'
+    exec ':Obsession ' . l:session_file
+endfunction
 
-" Tell NetRW to keep line numbers
-let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-
-
-let g:netrw_preview=1
-let g:netrw_altv=1
-
-" UltiSnip settings
-let g:ultisnips_python_quoting_style='single'
-let g:ultisnips_python_triple_quoting_style='double'
-let g:ultisnips_python_style='numpy'
-
+exec 'nnoremap <leader>sr :so ' .g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS>'
+nnoremap <silent> <leader>ss :call SetSession()<CR>
