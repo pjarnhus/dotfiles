@@ -37,6 +37,9 @@ set fileformat=unix
 set ignorecase
 set smartcase
 
+" Set leader key
+let mapleader="æ"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""                                                                             """""
@@ -195,8 +198,6 @@ endfunction
 
 inoremap <silent> <CR> <C-\><C-O>:call <SID>NewLineParens()<CR> 
 
-" Set leader key
-let mapleader="æ"
 
 " Break line while remaining in normal mode
 nnoremap <leader>j i<CR><ESC>
