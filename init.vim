@@ -6,13 +6,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Remove compatability with vi - probably default but let's be sure
+" Remove compatibility with vi - probably default but let's be sure
 set nocompatible
 
-" Disable modelines for security reasons
+" Disable mode lines for security reasons
 set nomodeline
 
-" Activate filetype recognition, along with plugins and indents
+" Activate file type recognition, along with plugins and indents
 filetype plugin indent on
 
 " Allow a buffer to go to the background with unsaved changes
@@ -30,7 +30,7 @@ set wildmode=list:longest
 " Set encoding to UTF-8
 set encoding=utf-8
 
-" Set line breaks to be unix style
+" Set line breaks to be Unix style
 set fileformat=unix
 
 " Ignore case in searches, unless upper case letters are present
@@ -168,10 +168,10 @@ endfunction
 function! s:DeleteParenPair()
     let l:state = s:IsOpenClose()
     if l:state ==# "pair"
-        " Adding an extra backspace as feedkeys append to the text
+        " Adding an extra backspace as feed keys append to the text
         call feedkeys("\<BS>\<Right>\<BS>\<BS>", "n")
     else
-        " Adding an extra backspace as feedkeys append to the text
+        " Adding an extra backspace as feed keys append to the text
         call feedkeys("\<BS>\<BS>", "n")
     endif
 endfunction
@@ -183,10 +183,10 @@ inoremap <silent> <BS> <C-\><C-O>:call <SID>DeleteParenPair()<CR>
 function! s:NewLineParens()
     let l:state = s:IsOpenClose()
     if l:state ==# "pair"
-        " Adding an extra backspace as feedkeys append to the text
+        " Adding an extra backspace as feed keys append to the text
         call feedkeys("\<BS>\<CR>\<C-O>O", "n")
     else
-        " Adding an extra backspace as feedkeys append to the text
+        " Adding an extra backspace as feed keys append to the text
         call feedkeys("\<BS>\<CR>", "n")
     endif
 endfunction
@@ -208,14 +208,14 @@ nnoremap <leader>b :ls<CR>:buffer<space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Generic function for the statusline
+" Generic function for the status line
 function! StatusLine(state)
     let statusline=""
  
     " Add buffer number
     let statusline.="%(%{&buflisted?bufnr('%'):''}"
 
-    " Add a >> for the active buffer statusline
+    " Add a >> for the active buffer status line
     if a:state == "Active"
         let statusline.="\ >>\ "
     else
@@ -224,22 +224,22 @@ function! StatusLine(state)
     let statusline.="%)"
     let statusline.="%<"
 
-    " Add square brackets around readonly files
+    " Add square brackets around read-only files
     let statusline.="%{&readonly?'[':''}"
     let statusline.="%t"
     let statusline.="%{&readonly?']':''}"
 
-    " Add an asterix after the filename for changed files
+    " Add an asterisk after the filename for changed files
     let statusline.="%{&modified?'*':''}"
     let statusline.="\ "
 
     return statusline
 endfunction
 
-" Initialise the statusline
+" Initialise the status line
 set statusline=%!StatusLine('Active')
 
-" Change the statusline between active and inactive
+" Change the status line between active and inactive
 augroup status
     autocmd!
     autocmd WinEnter * setlocal statusline=%!StatusLine('Active')
