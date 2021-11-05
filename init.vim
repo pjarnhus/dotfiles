@@ -115,8 +115,12 @@ highlight ColorColumn ctermbg=235 guibg=#2c2d27
 " Set line numbering to relative numbers with the absolute at the current line
 set nu rnu
 
-" Set British spell checker, but do not highlight incorrect spelling
+" Set British spell checker, but only show incorrect spelling with a curly line
 set spell spelllang=en_gb
+highlight clear SpellRare
+highlight clear SpellLocal
+highlight clear SpellBad
+highlight SpellBad cterm=undercurl guisp=Red
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
