@@ -71,12 +71,6 @@ nnoremap <leader>o :find *
 
 call plug#begin(fnamemodify(expand('$MYVIMRC'), ':p:h') . '/autoload')
 
-" Colour scheme
-Plug 'jnurmine/Zenburn'
-
-" Syntax highlighting
-Plug 'sheerun/vim-polyglot'
-
 " Session plugin
 Plug 'tpope/vim-obsession'
 
@@ -102,9 +96,6 @@ set completeopt=menu
 """""                                                                             """""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Set colour scheme to the lovely zenburn
-colorscheme zenburn
 
 " Turn on syntax highlighting
 syntax on
