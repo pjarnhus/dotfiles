@@ -275,3 +275,15 @@ endfunction
 
 exec 'nnoremap <leader>sr :so ' .g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS>'
 nnoremap <silent> <leader>ss :call SetSession()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""                                                                             """""
+"""""                                Zettelkasten                                 """""
+"""""                                                                             """""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup zettelkasten
+    autocmd!
+    autocmd BufRead $HOME/**/Zettelkasten/**/*.md execute 'source ' . fnamemodify(expand($MYVIMRC), ':h') . '/zettelkasten.vim'
+augroup END
