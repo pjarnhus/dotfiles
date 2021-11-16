@@ -109,6 +109,13 @@ highlight clear SpellLocal
 highlight clear SpellBad
 highlight SpellBad cterm=undercurl guisp=Red
 
+" Toggle cursorline to show in the active buffer
+augroup actbuf
+    autocmd!
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""                                                                             """""
@@ -190,52 +197,6 @@ nnoremap <leader>b :ls<CR>:buffer<space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""                                                                             """""
-"""""                                 Status line                                 """""
-"""""                                                                             """""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Generic function for the status line
-function! StatusLine(state)
-    let statusline=""
- 
-    " Add buffer number
-    let statusline.="%(%{&buflisted?bufnr('%'):''}"
-
-    " Add a >> for the active buffer status line
-    if a:state == "Active"
-        let statusline.="\ >>\ "
-    else
-        let statusline.="\ \ \ \ "
-    endif
-    let statusline.="%)"
-    let statusline.="%<"
-
-    " Add square brackets around read-only files
-    let statusline.="%{&readonly?'[':''}"
-    let statusline.="%t"
-    let statusline.="%{&readonly?']':''}"
-
-    " Add an asterisk after the filename for changed files
-    let statusline.="%{&modified?'*':''}"
-    let statusline.="\ "
-
-    return statusline
-endfunction
-
-" Initialise the status line
-set statusline=%!StatusLine('Active')
-
-" Change the status line between active and inactive
-augroup status
-    autocmd!
-    autocmd WinEnter * setlocal statusline=%!StatusLine('Active')
-    autocmd WinLeave * setlocal statusline=%!StatusLine('Inactive')
-augroup END
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""                                                                             """""
 """""                                  Sessions                                   """""
 """""                                                                             """""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -274,3 +235,4 @@ augroup zettelkasten
     autocmd!
     autocmd BufRead $HOME/**/Zettelkasten/**/*.md execute 'source ' . fnamemodify(expand($MYVIMRC), ':h') . '/zettelkasten.vim'
 augroup END
+
