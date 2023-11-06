@@ -233,6 +233,6 @@ nnoremap <silent> <leader>ss :call SetSession()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup zettelkasten
     autocmd!
-    autocmd BufRead $HOME/**/Zettelkasten/**/*.md execute 'source ' . fnamemodify(expand($MYVIMRC), ':h') . '/zettelkasten.vim'
+    autocmd BufRead /**/zettelkasten/**/*.md execute 'source ' . fnamemodify(expand($MYVIMRC), ':h') . '/zettelkasten.vim'
 augroup END
 
