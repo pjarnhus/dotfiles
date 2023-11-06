@@ -29,3 +29,4 @@ alias zk='xfce4-terminal --tab --working-directory=$ZETTELKASTEN; firefox http:/
 alias note='$ZETTELKASTEN/note'
 alias blog='$BLOG/blog'
 export EDITOR=nvim
+export GIT_EDITOR=$EDITOR
