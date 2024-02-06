@@ -3,6 +3,7 @@ function! LinkComplete(A, L, P)
     if fnamemodify(l:zk_path, ':t') !=# "content"
         let l:zk_path = fnamemodify(l:zk_path, ':h')
     endif
+    let l:zk_path = l:zk_path . "/"
     return system("ls  " . l:zk_path . "new/2* " . l:zk_path . "top_pages/2* " . l:zk_path . "linked_pages/2*")
 endfunction
 function! LinkInsert()
