@@ -1,5 +1,8 @@
 function! LinkComplete(A, L, P)
-    let l:zk_path = "/home/phigit/Documents/Misc_Projects/Zettelkasten/content/"
+    let l:zk_path = fnamemodify(expand('%'), ':p:h')
+    if fnamemodify(l:zk_path, ':t') !=# "content"
+        let l:zk_path = fnamemodify(l:zk_path, ':h')
+    endif
     return system("ls  " . l:zk_path . "new/2* " . l:zk_path . "top_pages/2* " . l:zk_path . "linked_pages/2*")
 endfunction
 function! LinkInsert()
