@@ -10,7 +10,7 @@
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh My ZSH!]
 
 - shell:
-  - [git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions, Installing ZSH Auto-Suggestions plugin]
+  - [git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions, Installing ZSH Auto-Suggestions plugin]
   - [nvim -c PlugInstall -c qa, Running Neovim Plugin installer]
 
 - link:
