@@ -23,8 +23,10 @@ export PATH="$HOME/miniconda/bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-export ZETTELKASTEN="/home/phigit/zettelkasten"
-export BLOG="/home/phigit/Documents/Misc_Projects/DataScienceTidbits"
+if [ ! -e "~/.config/zettelkasten-path" ]; then
+    find / -type d -name 'zettelkasten' 2> /dev/null | head -n 1 > ~/.config/zettelkasten-path
+fi
+export ZETTELKASTEN=$(cat ~/.config/zettelkasten-path)
 alias zk='xfce4-terminal --tab --working-directory=$ZETTELKASTEN; firefox http://localhost:1313/zettelkasten 2> /dev/null&; cd $ZETTELKASTEN; hugo serve'
 alias note='$ZETTELKASTEN/note'
 alias blog='$BLOG/blog'
