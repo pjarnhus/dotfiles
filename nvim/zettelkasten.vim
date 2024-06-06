@@ -17,7 +17,7 @@ function! LinkInsert()
        if l:filedir ==# "new" || l:filedir ==# "top_pages"
            exec ':!git mv ' l:file . ' ' . fnamemodify(l:file, ':h:h') . '/linked_pages/' . l:filename
        endif
-       exec 'normal! a' . '{{< ref "../linked_pages/' . l:filename . '">}}'
+       exec 'normal! a' . '{{% ref "../linked_pages/' . l:filename . '"%}}'
    endif
 endfunction
 
