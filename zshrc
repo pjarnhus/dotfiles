@@ -49,3 +49,20 @@ export GIT_EDITOR=$EDITOR
 ### Aliases
 alias note='$ZETTELKASTEN/note'
 
+## Git aliases
+alias ga='git add'
+alias gd='git diff'
+alias gc='git commit --verbose'
+alias gl1='git log -1 -p'
+alias gl='git log --pretty="format:%C(auto)%h %s - %Cred%an, %ad%C(auto) %(decorate)%Creset" --branches --graph --relative-date'
+
+# Function for cleaning up local branches after merging a pull request
+function gcl(){
+    if [ -n "$1" ]
+    then
+        git checkout master
+        git pull origin master
+        git remote prune origin
+        git branch -d "$1"
+    fi
+}
