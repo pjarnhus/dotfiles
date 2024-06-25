@@ -35,7 +35,6 @@ PROMPT='%B%F{magenta}%c%B%F{green}${vcs_info_msg_0_}%B%F{magenta} %{$reset_color
 autoload -U add-zsh-hook
 add-zsh-hook precmd  theme_precmd
 
-export PATH="$HOME/miniconda/bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
@@ -43,8 +42,6 @@ if [ ! -e "~/.config/zettelkasten-path" ]; then
     find / -type d -name 'zettelkasten' 2> /dev/null | head -n 1 > ~/.config/zettelkasten-path
 fi
 export ZETTELKASTEN=$(cat ~/.config/zettelkasten-path)
-alias zk='xfce4-terminal --tab --working-directory=$ZETTELKASTEN; firefox http://localhost:1313/zettelkasten 2> /dev/null&; cd $ZETTELKASTEN; hugo serve'
 alias note='$ZETTELKASTEN/note'
-alias blog='$BLOG/blog'
 export EDITOR=nvim
 export GIT_EDITOR=$EDITOR
