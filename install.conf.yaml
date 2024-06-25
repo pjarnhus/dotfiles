@@ -3,9 +3,6 @@
   - ~/.config/nvim/session
     
 - shell:
-  - rm -fr ~/.oh-my-zsh
-
-- shell:
   - [curl -fLo ~/.config/nvim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim, Installing plugin manager for Neovim]
 
 - shell:
