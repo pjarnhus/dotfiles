@@ -61,6 +61,30 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export EDITOR=nvim
 export GIT_EDITOR=$EDITOR
 
+### Key bindings
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+### History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
+# Append to history file
+setopt append_history
+
+# Share history across sessions - adds commands to history file as the are executed
+setopt share_history
+
+# Commands starting with a blank space are not added to the history
+setopt hist_ignore_space
+# Do not store or show duplicate commands in history file
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
 ### Aliases
 alias note='$ZETTELKASTEN/note'
 
