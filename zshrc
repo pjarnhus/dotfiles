@@ -38,9 +38,10 @@ add-zsh-hook precmd  theme_precmd
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-if [ ! -e "~/.config/zettelkasten-path" ]; then
-    find / -type d -name 'zettelkasten' 2> /dev/null | head -n 1 > ~/.config/zettelkasten-path
+if [ ! -f ~/.config/zettelkasten-path ]; then
+    echo "No path file found for Zettelkasten"
 fi
+
 export ZETTELKASTEN=$(cat ~/.config/zettelkasten-path)
 alias note='$ZETTELKASTEN/note'
 export EDITOR=nvim
