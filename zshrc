@@ -53,6 +53,7 @@ alias note='$ZETTELKASTEN/note'
 alias ga='git add'
 alias gd='git diff'
 alias gc='git commit --verbose'
+alias gss='git status -sb'
 alias gl1='git log -1 -p'
 alias gl='git log --pretty="format:%C(auto)%h %s - %Cblue%an, %ad%C(auto) %d%Creset" --branches --graph --relative-date'
 
