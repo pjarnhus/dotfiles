@@ -1,23 +1,39 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Autoload functions
+autoload -Uz vcs_info
+autoload -U colors && colors
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="kolo"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+zstyle ':vcs_info:*' stagedstr '%F{green}●'
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:svn:*' branchformat '%b'
+zstyle ':vcs_info:svn:*' formats ' [%b%F{1}:%F{11}%i%c%u%B%F{green}]'
+zstyle ':vcs_info:*' enable git svn
 
-source $ZSH/oh-my-zsh.sh
+theme_precmd () {
+  if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+    zstyle ':vcs_info:git:*' formats ' [%b%c%u%B%F{green}]'
+  else
+    zstyle ':vcs_info:git:*' formats ' [%b%c%u%B%F{red}●%F{green}]'
+  fi
+
+  vcs_info
+}
+
+# Enable parameter expansion
+setopt prompt_subst
+
+# Set prompt
+# %B = Bold face
+# %F = Front colour
+# %c = trailing component of working directory
+# %# = Returns # if running in privileged mode, % otherwise
+
+PROMPT='%B%F{magenta}%c%B%F{green}${vcs_info_msg_0_}%B%F{magenta} %{$reset_color%}%# '
+
+autoload -U add-zsh-hook
+add-zsh-hook precmd  theme_precmd
 
 export PATH="$HOME/miniconda/bin:$PATH"
 
