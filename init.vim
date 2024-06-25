@@ -110,9 +110,10 @@ highlight clear SpellBad
 highlight SpellBad cterm=undercurl guisp=Red
 
 " Toggle cursorline to show in the active buffer
+" BufEnter is included to account for the first buffer opened
 augroup actbuf
     autocmd!
-    autocmd WinEnter * set cursorline
+    autocmd BufEnter,WinEnter * set cursorline
     autocmd WinLeave * set nocursorline
 augroup END
 
