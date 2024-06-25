@@ -87,6 +87,8 @@ setopt hist_find_no_dups
 
 ### Aliases
 alias note='$ZETTELKASTEN/note'
+alias ls='ls --color'
+alias v=nvim
 
 ## Git aliases
 alias ga='git add'
