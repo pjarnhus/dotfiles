@@ -73,7 +73,7 @@ call plug#begin(fnamemodify(expand('$MYVIMRC'), ':p:h') . '/autoload')
 
 " Session plugin
 Plug 'tpope/vim-obsession'
-
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
