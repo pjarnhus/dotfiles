@@ -124,7 +124,9 @@ highlight clear VertSplit
 highlight clear StatusLine
 highlight clear StatusLineNC
 set noruler
-set fillchars=stl:–,stlnc:—
+set laststatus=0
+set fillchars=stl:―,stlnc:⎯
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""                                                                             """""
