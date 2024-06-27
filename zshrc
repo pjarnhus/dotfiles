@@ -62,6 +62,7 @@ export EDITOR=nvim
 export GIT_EDITOR=$EDITOR
 
 ### Key bindings
+bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
