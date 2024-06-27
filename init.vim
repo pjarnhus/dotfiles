@@ -117,6 +117,14 @@ augroup actbuf
     autocmd WinLeave * set nocursorline
 augroup END
 
+" Remove background colour of window divider
+highlight clear VertSplit
+
+" Remove colours and extraneous information from status line
+highlight clear StatusLine
+highlight clear StatusLineNC
+set noruler
+set fillchars=stl:–,stlnc:—
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""                                                                             """""
