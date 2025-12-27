@@ -17,6 +17,8 @@
 
     ~/.config/nvim/lua: nvim/lua
 
+    ~/.config/nvim/ftplugin: nvim/ftplugin
+
     ~/.config/nvim/zettelkasten.vim: nvim/zettelkasten.vim
       
     ~/.config/tmux/tmux.conf: tmux.conf
