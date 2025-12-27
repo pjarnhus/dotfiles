@@ -16,9 +16,6 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
-# Load completions
-autoload -Uz compinit && compinit
-
 zstyle ':vcs_info:*' stagedstr '%F{green}●'
 zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
 zstyle ':vcs_info:*' check-for-changes true
@@ -57,7 +54,7 @@ if [ -f ~/.config/zettelkasten-path ]; then
 else
     echo "No path file found for Zettelkasten"
 fi
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
 export GIT_EDITOR=$EDITOR
 
