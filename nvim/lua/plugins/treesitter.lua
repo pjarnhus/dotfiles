@@ -5,7 +5,7 @@ return {{
         local configs = require("nvim-treesitter.configs")
 
         configs.setup({
-            ensure_installed = { "python", "markdown", "lua"},
+            ensure_installed = { "python", "markdown", "lua", "vimdoc"},
             sync_install = false,
             highlight = {
                 enable = true,
