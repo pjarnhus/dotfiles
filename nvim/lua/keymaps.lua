@@ -17,3 +17,7 @@ vim.keymap.set("n", "<C-L>", "<C-W>l")
 
 --LivePreview
 vim.keymap.set("n", "<leader>v", ":LivePreview start<CR><CR>")
+
+--Code Companion
+vim.keymap.set({ "n", "v" }, "<Leader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
