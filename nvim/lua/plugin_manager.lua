@@ -20,3 +20,7 @@ require("lazy").setup({
     { import = "plugins" },
     }
 })
+
+-- Stop highlighting for unmatched languages
+vim.treesitter.language.stop_hl_for_unmatched = true
+
