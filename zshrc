@@ -107,3 +107,5 @@ function gcl(){
         git branch -d "$1"
     fi
 }
+
+[[ -z $TMUX ]] && tmux
