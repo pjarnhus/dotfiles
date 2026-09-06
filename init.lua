@@ -9,4 +9,3 @@ require("zettelkasten")
 
 -- Set colour scheme
 vim.cmd("colorscheme kanagawa")
-
