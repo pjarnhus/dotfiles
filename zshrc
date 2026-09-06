@@ -87,6 +87,8 @@ setopt hist_find_no_dups
 alias note='$ZETTELKASTEN/note'
 alias ls='ls --color'
 alias v=nvim
+alias ipy='uv run --with ipython ipython'
+alias jup='uv run --with jupyter jupyter lab'
 
 ## Git aliases
 alias ga='git add'
