@@ -1,0 +1,11 @@
+{
+    "$schema": "https//opencode.ai/config.json",
+    "agents": {
+        "build": { "disabled": true },
+        "plan": { "disabled": true }
+    },
+    "default_agent": "Collaborator",
+    "permission": {
+        "*": "ask"
+    }
+}
