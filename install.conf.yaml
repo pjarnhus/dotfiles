@@ -1,6 +1,7 @@
 - create:
   - ~/.config/nvim/session
   - ~/.config/tmux
+  - ~/.config/opencode
     
 - shell:
   - [git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm, Installing plugin manager for tmux]
@@ -25,3 +26,9 @@
     ~/.config/nvim/zettelkasten.vim: nvim/zettelkasten.vim
       
     ~/.config/tmux/tmux.conf: tmux.conf
+
+    ~/.config/opencode/agents/jig-master.md: opencode/agents/jig-master.md
+
+    ~/.config/opencode/agents/Collaborator.md: opencode/agents/Collaborator.md
+
+    ~/.config/opencode/agents/Junior Developer.md: opencode/agents/Junior Developer.md
