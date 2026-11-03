@@ -8,6 +8,9 @@
 - shell:
   - [~/.tmux/plugins/tpm/bin/install_plugins, Running Tmux Plugin installer]
 
+- shell:
+  - [uv tool install basedpyright, Installing Python LSP server]
+
 - link:
     ~/.zshrc:
       force: true

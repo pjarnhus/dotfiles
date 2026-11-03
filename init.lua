@@ -5,6 +5,7 @@ require("spell")
 require("fuzzy")
 require("keymaps")
 require("plugin_manager")
+require("lsp")
 require("zettelkasten")
 
 -- Set colour scheme
