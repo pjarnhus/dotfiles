@@ -10,6 +10,8 @@
   - [~/.tmux/plugins/tpm/bin/install_plugins, Running Tmux Plugin installer]
 
 - shell:
+  - ["command -v rustup >/dev/null || curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh -s -- -y --profile minimal", Installing Rust toolchain]
+  - ["export PATH=\"$HOME/.cargo/bin:$PATH\"; command -v tree-sitter >/dev/null || cargo install tree-sitter-cli --locked", Installing tree-sitter-cli]
   - [uv tool install basedpyright, Installing Python LSP server]
 
 - link:
