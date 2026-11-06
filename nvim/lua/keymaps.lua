@@ -18,5 +18,5 @@ vim.keymap.set("n", "<C-J>", "<C-W>j")
 vim.keymap.set("n", "<C-K>", "<C-W>k")
 vim.keymap.set("n", "<C-L>", "<C-W>l")
 
---LivePreview
+-- LivePreview
 vim.keymap.set("n", "<leader>v", ":LivePreview start<CR><CR>")

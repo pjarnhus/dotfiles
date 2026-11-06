@@ -6,3 +6,4 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileformat = "unix"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.splitright = true
