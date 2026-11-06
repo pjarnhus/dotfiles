@@ -4,10 +4,10 @@
   - ~/.config/opencode
     
 - shell:
-  - [git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm, Installing plugin manager for tmux]
+  - [test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm, Installing plugin manager for tmux]
 
 - shell:
-  - [~/.tmux/plugins/tpm/bin/install_plugins, Running Tmux Plugin installer]
+  - [test -d ~/.tmux/plugins/vim-tmux-navigator || ~/.tmux/plugins/tpm/bin/install_plugins, Running Tmux Plugin installer]
 
 - shell:
   - ["command -v rustup >/dev/null || curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh -s -- -y --profile minimal", Installing Rust toolchain]
